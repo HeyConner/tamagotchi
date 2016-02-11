@@ -1,7 +1,7 @@
 <html>
   <head>
+    <link href="/../bootstrap/css/bootstrap.css">
     <title>Tamagotchi</title>
-    <link rel='stylesheet' type='text/css' href='bootstrap/css/bootstrap.min.css'>
   </head>
   <body>
     <div class='jumbotron'>
@@ -12,7 +12,22 @@
         <h2>Tamagotchis':</h2>
       </div>
       <div>
+          {% if tamagotchis is not empty %}
+              <p>Here are all of your tamagotchis:</p>
+              <ul>
+                  {% for tamagotchi in tamagotchis %}
+                      <li>{{ tamagotchi.getName }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
 
+      <div>
+          <form action="/tamagotchi_form">
+              <button type="submit">Create Tamagotchi</button>
+          </form>
+          <form action="/delete_tama" method="post">
+            <button type="submit">Clear</button>
+          </form>
       </div>
     </div>
 

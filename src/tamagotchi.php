@@ -4,12 +4,14 @@
         private $food;
         private $attention;
         private $rest;
+        private $name;
 
-        function __construct($hunger, $atn, $sleep)
+        function __construct($food, $attention, $rest, $name)
         {
-            $this->food = $hunger;
-            $this->attention = $atn;
-            $this->$rest = sleep;
+            $this->food = $food;
+            $this->attention = $attention;
+            $this->rest = $rest;
+            $this->name = $name;
         }
 
         function getFood()
@@ -40,6 +42,26 @@
         function setRest($rested)
         {
             $this->rest = $rested;
+        }
+        function getName() {
+            return $this->name;
+        }
+        function setName($tama_name) {
+            $this->name = (string)$tama_name;
+        }
+
+        function save()
+        {
+            array_push($_SESSION['tama_list'], $this);
+        }
+
+        static function getAll()
+        {
+            return $_SESSION['tama_list'];
+        }
+
+        static function deleteAll() {
+          $_SESSION['tama_list'] = array();
         }
     }
 ?>
