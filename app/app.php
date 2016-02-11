@@ -1,12 +1,17 @@
 <?php
     require_once __DIR__."/../vendor/autoload.php";
-    require_once __DIR__."/../";
+    require_once __DIR__."/../src/tamagotchi.php";
 
     $app = new Silex\Application();
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
     ));
+
+    $app->get("/", function() use ($app)
+    {
+        return $app['twig']->render('tamagotchi_list.html.twig');
+    });
 
     return $app;
 ?>
