@@ -18,6 +18,13 @@
         return $app['twig']->render('tamagotchi_list.html.twig', array('tamagotchis' => Tamagotchi::getAll()));
     });
 
+    $app->get("/pass_time", function() use ($app)
+    {
+        Tamagotchi::time();
+        return $app['twig']->render('tamagotchi_list.html.twig', array('tamagotchis' => Tamagotchi::getAll()));
+    });
+
+
     $app->get("/tamagotchi_form", function() use ($app)
     {
         return $app['twig']->render('tamagotchi_form.html.twig');
@@ -25,7 +32,7 @@
 
     $app->post("/", function() use ($app)
     {
-        $tamas = new Tamagotchi(100, 100, 100, $_POST['name']);
+        $tamas = new Tamagotchi(10, 10, 10, $_POST['name']);
         $tamas->save();
         return $app['twig']->render('tamagotchi_list.html.twig', array('tamagotchis' => Tamagotchi::getAll()));
     });

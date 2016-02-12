@@ -1,35 +1,42 @@
 <html>
-  <head>
-    <link href="/../bootstrap/css/bootstrap.css">
-    <title>Tamagotchi</title>
-  </head>
-  <body>
-    <div class='jumbotron'>
-      <h1>Tamagotchi Simulator</h1>
+<head>
+  <link href="/../bootstrap/css/bootstrap.css">
+  <title>Tamagotchi</title>
+</head>
+<body>
+  <div class='jumbotron'>
+    <h1>Tamagotchi Simulator</h1>
+  </div>
+  <div class='container'>
+    <div>
+      <h2>Tamagotchis':</h2>
     </div>
-    <div class='container'>
-      <div>
-        <h2>Tamagotchis':</h2>
-      </div>
-      <div>
-          {% if tamagotchis is not empty %}
-              <p>Here are all of your tamagotchis:</p>
-              <ul>
-                  {% for tamagotchi in tamagotchis %}
-                      <li>{{ tamagotchi.getName }}</li>
-                  {% endfor %}
-              </ul>
-          {% endif %}
+    <div>
+      {% if tamagotchis is not empty %}
+        {% for tamagotchi in tamagotchis %}
+          <div>
+            <h3>Name: {{ tamagotchi.getName }}</h3>
+            <div>
+              <p>Hunger: {{ tamagotchi.getFood }} - <button id="feed" type="submit">Feed</button></p>
+              <p>Attention: {{ tamagotchi.getAttention }} - <button id="pet" type="submit">Pet</button></p>
+              <p>Rest: {{ tamagotchi.getRest}} - <button id="rest" type="submit">Put to Sleep</button></p>
+            </div>
+            <br>
+            <form action="/pass_time">
+              <button id="time" type="submit">Pass Time</button>
+            </form>
+          {% endfor %}
+        {% endif %}
 
-      <div>
+        <div>
           <form action="/tamagotchi_form">
-              <button type="submit">Create Tamagotchi</button>
+            <button type="submit">Create Tamagotchi</button>
           </form>
           <form action="/delete_tama" method="post">
             <button type="submit">Clear</button>
           </form>
+        </div>
       </div>
-    </div>
 
-  </body>
-</html>
+    </body>
+    </html>

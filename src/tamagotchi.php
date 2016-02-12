@@ -14,6 +14,20 @@
             $this->name = $name;
         }
 
+        static function time()
+        {
+            foreach ($_SESSION['tama_list'] as $tama)
+            {
+               if($tama->getfood() == 0 || $tama->getAttention() == 0 || $tama->getRest() == 0)
+               {
+                  unset($tama[0]);
+               }
+               $tama->setFood($tama->getFood() - rand(1,2));
+               $tama->setAttention($tama->getAttention() - rand(1,2));
+               $tama->setRest($tama->getRest() - rand(1,3));
+            }
+        }
+
         function getFood()
         {
             return $this->food;
@@ -24,7 +38,7 @@
             $this->food = $fed;
         }
 
-        function getAttenton()
+        function getAttention()
         {
             return $this->attention;
         }
